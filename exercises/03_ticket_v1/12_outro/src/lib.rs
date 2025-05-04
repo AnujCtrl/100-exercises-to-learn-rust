@@ -1,4 +1,59 @@
 // TODO: Define a new `Order` type.
+pub struct Order {
+    product_name: String,
+    quantity: u64,
+    unit_price: u64,
+}
+
+impl Order {
+    pub fn new(product_name: String, quantity: u64, unit_price: u64) -> Order {
+        if product_name.is_empty() || product_name.capacity() > 300 {
+            panic!()
+        }
+        if quantity < 1 {
+            panic!()
+        }
+        if unit_price == 0 {
+            panic!()
+        }
+        Order {
+            product_name: product_name,
+            quantity: quantity,
+            unit_price: unit_price,
+        }
+    }
+    pub fn set_product_name(&mut self, product_name: String) {
+        if product_name.is_empty() || product_name.capacity() > 300 {
+            panic!()
+        }
+        self.product_name = product_name
+    }
+    pub fn set_quantity(&mut self, quantity: u64) {
+        if quantity < 1 {
+            panic!()
+        }
+        self.quantity = quantity
+    }
+    pub fn set_unit_price(&mut self, unit_price: u64) {
+        if unit_price == 0 {
+            panic!()
+        }
+        self.unit_price = unit_price
+    }
+    pub fn product_name(&self) -> &String {
+        &self.product_name
+    }
+    pub fn quantity(&self) -> &u64 {
+        &self.quantity
+    }
+    pub fn unit_price(&self) -> &u64 {
+        &self.unit_price
+    }
+    pub fn total(&self) -> u64 {
+        &self.quantity * &self.unit_price
+    }
+}
+
 //   It should keep track of three pieces of information: `product_name`, `quantity`, and `unit_price`.
 //   The product name can't be empty and it can't be longer than 300 bytes.
 //   The quantity must be strictly greater than zero.
